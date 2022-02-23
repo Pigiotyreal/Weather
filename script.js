@@ -1,16 +1,18 @@
 let weather = {
-   "apikey": "cbcb53ade564e5f5f410dce29fb482c3",
+   "apikey": "7917d0aff3be19359224317b8eabac0f",
    fetchWeather: function (city) {
        fetch(
        "https://api.openweathermap.org/data/2.5/weather?q="
         + city
-        + "units=imperial&appid="
-        + this.apiKey
+        + "&units=imperial&appid="
+        + this.apikey
     )
        .then((response) => response.json())
-       .then((data) => console.log(data));
+       .then((data) => this.displayWeather(data))
+       .catch((err)=> console.log(this));
    },
    displayWeather: function (data) {
+    console.log(data)
     const { name } = data;
     const { icon, desciption } = data.weather[0];
     const { temp, humidity } = data.main;
